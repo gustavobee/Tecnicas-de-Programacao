@@ -1,0 +1,198 @@
+Definição:
+
+Baseada em uma chave
+  ○ A chave de busca é o campo do item utilizado para comparação
+■ Valor armazenado em um array de inteiros
+■ Campo de uma struct
+■ etc...
+  ○ É por meio dela que sabemos se dado elemento é o que buscamos
+■ No caso do item estar presente no conjunto de elementos, seus dados são retornados para o usuário
+
+➔ Tipos de busca abordados
+  ○ Dados armazenados em um array, lista
+  ○ Dados ordenados ou não
+➔ Métodos
+  ○ Busca Sequencial ou Linear
+  ○ Busca Sequencial Ordenada
+  ○ Busca Binária
+  
+  
+* Busca Sequencial ou Linear *
+
+➔ Estratégia de busca mais simples que existe
+  ○ Basicamente, esse algoritmo percorre o array que contém os dados desde a sua primeira posição até a última
+■ Assume que os dados não estão ordenados, por isso a necessidade de percorrer o array do seu início até o seu fim
+
+➔ Funcionamento
+○ Para cada posição do array ou do elemento, o algoritmo compara se a posição atual do array, ou valor do elemento é igual ao valor buscado.
+■ Se os valores forem iguais, a busca termina
+■ caso contrário, a busca continua com a próxima posição do array ou elemento
+
+➔ Algoritmo (array)
+
+int buscaLinear(int *V, int N, int elem){
+    int i;
+    for(i = 0; i<N; i++){
+        if(elem == V[i])
+          return i;
+    }
+    return -1;
+}
+
+➔ Algoritmo (estrutura)
+
+typedef struct aluno {
+    int matricula;
+    char nome[50];
+    float media;
+    struct aluno* prox;
+}Aluno;
+
+Aluno* buscaLinear(Aluno* lista, int matricula) {
+    Aluno* atual = lista;
+    while (atual != NULL && atual -> matricula != matricula) {
+        atual = atual -> prox;
+    }
+    return atual;
+}
+
+➔ Complexidade
+  ○ Considerando um array com N elementos
+■ O(1), melhor caso: o elemento é o primeiro do array
+■ O(N), pior caso: o elemento é o último do array ou não existe
+■ O(N/2), caso médio
+    
+    
+* Busca Sequencial Ordenada *
+
+➔ Procurar por um determinado valor em um array ou estrutura desordenada é uma tarefa bastante cara.
+
+➔ Como melhorar isso?
+  ○ Organizando o array/estrutura segundo alguma ordem, isto é, devemos ordenar o array/estrutura
+  ○ Isso facilita a tarefa de busca
+  
+➔ Funcionamento em array
+  ○ Assume que os dados estão ordenados
+  ○ Se o elemento procurado for menor do que o valor em uma determinada posição do array, temos a certeza de que ele não estará no restante do array
+■ Isso evita a necessidade de percorrer o array do seu início até o seu fim
+
+➔ Algoritmo (array)
+
+int buscaOrdenada(int *V, int N, int elem){
+    int i;
+    for(i = 0; i < N; i++){
+        if(elem == V[i])
+          return i;
+        else
+          if(elem < V[i])
+            return -1;
+    }
+    return -1;
+}
+
+➔ Desvantagens
+  ○ Ordenar um array também tem um custo
+■ Esse custo é superior ao custo da busca sequencial no seu pior caso
+
+  ○ Se for para fazer a busca de um único elemento, não compensa ordenar o array
+■ Porém, se mais de um elemento for recuperado do array, o esforço de ordenar o array pode compensar
+
+
+
+* Busca Binária *
+
+➔ Fazer a busca em um array ordenado representa um ganho de tempo
+  ○ Podemos terminar a busca mais cedo se o elemento procurado for menor que o valor da posição atual do array
+  
+➔ A Busca Sequencial Ordenada é uma estratégia de busca extremamente simples
+  ○ Ela percorre todo o array linearmente
+  ○ Não utiliza adequadamente a ordenação dos dados
+➔ Uma estratégia de busca mais sofisticada é a Busca Binária
+  ○ Muito mais eficiente do que a Busca Sequencial Ordenada
+  
+➔ Funcionamento
+  ○ É uma estratégia baseada na idéia de dividir para
+conquistar
+  ○ A cada passo, esse algoritmo analisa o valor do meio do
+array
+■ Caso esse valor seja igual ao elemento procurado, a busca termina
+■ Caso contrário, a busca continua na metade do array que condiz com o valor procurado
+
+int buscaBinaria (int *V, int N, int elem)
+     int i, inicio, meio, final;
+    inicio = 0;
+    final = N-1;
+    while (inicio <= final)
+        meio = (inicio + final)/2;
+        if (elem <V[meio])
+            final =meio-1://busca na metade da esquerda
+        else
+            if (elem > V[meio])
+                inicio 0 = meio+1://busca na metade da direita
+            else
+                return meio;
+     )
+    return -1: //elemento não encontrado
+    
+➔ Complexidade
+  ○ Considerando um array com N elementos, o tempo de execução é:
+■ O(1), melhor caso: o elemento procurado está no meio
+do array;
+■ O(log2N), pior caso: o elemento não existe;
+■ O(log2N), caso médio.
+  ○ Para se ter uma idéia da sua vantagem, em um array contendo N = 1000 elementos, no pior caso
+■ A Busca Sequencial irá executar 1000 comparações
+■ A Busca Binária irá executar apenas 10 comparações
+
+
+* Busca em array de struct *
+
+➔ A busca em um array de inteiros é uma tarefa simples
+  ○ Na prática, trabalhamos com dados um pouco mais complexos, como estruturas
+  ○ Mais dados para manipular
+  
+struct aluno
+    int matricula;
+    char nome [30];
+    float n1, n2, n3;
+ };
+
+➔ A busca é baseada em uma chave
+  ○ A chave de busca é o campo do item utilizado para comparação
+■ Valor armazenado em um array de inteiros
+■ Campo de uma struct
+■ etc
+  ○ É por meio dela que sabemos se dado elemento é o que buscamos
+■ No caso do item estar presente no conjunto de elementos, seus dados são retornados para o usuário
+
+➔ Ou seja, devemos modificar o algoritmo para que a comparação das chaves seja feita utilizando um determinado campo da struct
+➔ Exemplo
+  ○ Vamos modificar a busca linear
+■ Essa modificação vale para os outros tipos de busca
+
+int buscaLinear (int *V, int N, int elem)
+     int i:
+     for (i i =0; i<N; i++)(
+         if (elem == V[i])
+             return i://elemento encontrado
+    return -1://elemento não encontrado
+
+➔ Duas novas buscas
+   ○ Busca por matricula
+   ○ Busca por nome
+   
+int buscaLinearMatricula (struct aluno *V, int N, int elem) (
+     int i;
+     for (i = 0; i<N; i++) |
+         if (elem -- V(i),matricula)
+             return i://elemento encontrado
+     )
+     return -1://elemento não encontrado
+     
+
+int buscaLinearNome (struct aluno *V, int N, char* elem) (
+     int i:
+     for (i 0; i<N; i++) (
+         if (strcmp (elem, V[i].nome) ==0)
+             return it//elemento encontrado
+     return ) -1://elemento não encontrado
