@@ -1,0 +1,36 @@
+typedef struct aluno {
+    int matricula;
+    char nome[50];
+    Float media;
+    struct aluno* prox;
+    struct aluno* ant;
+} Aluno;
+
+typedef struct lista {
+    Aluno* inicio;
+    int tamanho;
+} ListaAlunos;
+
+void bubbleSort(ListaAlunos* lista) {
+    int tamanho = lista->tamanho;
+    if (tamanho < 2) {
+        return;
+    }
+    int trocado = 1;
+    while (trocado) {
+        trocado = 0;
+        Aluno* atual = lista->inicio;
+        for (int i = 0; i < tamanho - 1; i++) {
+            Aluno* proximo = atual->prox;
+            if (atual->media > proximo->media) {
+                // Troca os elementos
+                Aluno temp = *atual;
+                *atual = *proximo;
+                *proximo = temp;
+                trocado = 1;
+            }
+            atual = atual->prox;
+        }
+        tamanho--;
+    }
+}
