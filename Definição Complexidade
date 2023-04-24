@@ -1,0 +1,155 @@
+Notacão Big-O
+A notação big-O é a forma mais conhecida e utilizada de
+análise assintótica
+○ Complexidade do nosso algoritmo no pior caso
+■ Seja de tempo ou de espaço
+○ É o caso mais fácil de se identificar
+■ Limite superior sobre o tempo de execução do algoritmo
+■ Para diversos algoritmos o pior caso ocorre com frequência
+
+Notação big-Omega, Ω
+○ Descreve o limite assintótico inferior
+○ É utilizada para analisar o melhor caso do algoritmo
+○ A notação Ω(n2) nos diz que o custo do algoritmo é, assintoticamente, maior ou igual a n²
+■ Ou seja, o custo do algoritmo original é no mínimo tão
+ruim quanto n²
+○ Matematicamente, a notação Ω é assim definida
+■ Uma função custo f(n) é Ω(g(n)) se existem duas
+constantes positivas c e m tais que
+■ Para n ≥ m, temos f(n) ≥ c.g(n)
+Em outras palavras, para todos os valores de n à direita de m, o resultado da função custo f(n) é sempre maior ou igual ao valor da função usada na notação Ω, g(n), multiplicada por uma constante c
+f(n) = 3n² + n é Ω(n)
+○ Temos que encontrar constantes c e m tais que:
+○ 3n²+ n ≥ cn
+○ Dividindo por n², temos:
+○ 3 + 1/n ≥ c/n
+○ Considerando c=4 e n>0, temos que f(n) = 3n²+ n é Ω(n)
+
+Notação big-O, O
+○ Descreve o limite assintótico superior
+○ É utilizada para analisar o pior caso do algoritmo
+○ A notação O(n²) nos diz que o custo do algoritmo é, assintoticamente, menor ou igual a n²
+■ Ou seja, o custo do algoritmo original é no máximo tão ruim quanto n²
+○ Matematicamente, a notação O é assim definida
+■ Uma função custo f(n) é O(g(n)) se existem duas constantes positivas c e m tais que
+■ Para n ≥ m, temos f(n) ≤ c.g(n)
+○ Em outras palavras, para todos os valores de n à direita de m, o resultado da função custo f(n) é sempre menor ou igual ao valor da função usada na notação O, g(n), multiplicada por uma constante c.
+f(n) = 2n² + 10 é O(n³)
+○ Temos que encontrar constantes c e m tais que:
+○ 2n² + 10 ≤ cn³
+○ Dividindo por n³, temos:
+○ 2/n + 10/n³ ≤ c
+○ Considerando c=1 e n≥4, temos que f(n) = 2n²+ 10 é O(n³)
+■ Dá para melhorar essa análise!
+f(n) = 4n + 7 é O(n)
+
+○ Temos que encontrar constantes c e m tais que:
+○ 4n + 7 ≤ cn
+○ Dividindo por n, temos:
+○ 4 + 7/n ≤ c
+○ Considerando c=8 e n>1, temos que f(n) = 4n + 7 é O(n)
+f(n) = n² não é O(n)
+○ Temos que encontrar constantes c e m tais que:
+○ n² ≤ cn
+○ Dividindo por n, temos:
+○ n ≤ c
+○ A desigualdade é inválida!
+■ O valor de n está limitado pela constante c
+■ A análise assintótica não é possível (entrada tendendo ao infinito)
+➔ Notação big-O, O
+○ Essa notação possui algumas operações
+○ A mais importante é a regra da soma
+■ Permite a análise da complexidade de diferentes algoritmos em sequência
+○ Definição
+■ Se dois algoritmos são executados em sequência, a complexidade será dada pela complexidade do maior deles
+■ O(f(n)) + O(g(n)) = O(max(f(n),g(n)))
+➔ Notação big-O, O
+○ Exemplo da regra da soma. Se temos
+■ Dois algoritmos cujos tempos de execução são O(n) e O(n²), a execução deles em sequência será O(max(n,n2)) qe é O(n²)
+■ Dois algoritmos cujos tempos de execução são O(n) e
+O(n log n), a execução deles em sequência será
+O(max(n,n log n)) que é O(n log n)
+
+Notação big-Theta, Θ
+○ Descreve o limite assintótico firme
+○ É utilizada para analisar o limite inferior e superior do algoritmo
+○ A notação Θ(n²) nos diz que o custo do algoritmo é assintoticamente, igual a n²
+■ Ou seja, o custo do algoritmo original é n² dentro de um fator constante acima e abaixo
+○ Matematicamente, a notação Θ é assim definida
+■ Uma função custo f(n) é Θ(g(n)) se existem três constantes positivas c1, c2 e m tais que
+■ Para n ≥ m, temos c1.g(n) ≤ f(n) ≤ c2.g(n)
+■ Confuso?
+○ Em outras palavras, para todos os valores de n à direita de m, o resultado da função custo f(n) é sempre igual ao valor da função usada na notação Θ, g(n), quando está é multiplicada por constantes c1 e c2
+Exemplo: mostrar que a função custo
+f(n) = 1/2 n²-3n é Θ(n²)
+○ Temos que encontrar constantes c1 e c2 e m tais que:
+○ c1n²≤ 1/2 n² - 3n ≤ c2n²
+○ Dividindo por n², temos
+○ c1≤ 1/2 - 3/n ≤ c2
+○ A desigualdade do lado direito é válida para n ≥ 1 escolhendo c2 ≥ 1/2
+○ A desigualdade do lado esquerdo é válida para n ≥ 7 escolhendo c1 ≥ 1/14
+○ Assim, para c1 ≥ 1/14, c2 ≥ 1⁄2 e n ≥ 7, f(n) = 1/2 n²- 3n é Θ(n²)
+f(n) = 6n³ não é Θ(n²)
+○ Temos que encontrar constantes c1 e c2 e m tais que:
+○ c1n² ≤ 6n³ ≤ c2n²
+○ Dividindo por n², temos
+○ c1≤ 6n ≤ c2
+○ c1n² ≤ 6n³ ≤ c2n²
+○ A desigualdade do lado direito é inválida!
+○ n ≤ c2/6
+○ O valor de n está limitado pela constante c2
+○ A análise assintótica não é possível (entrada tendendo ao infinito)
+
+
+Notação little-o, o, e little-omega, ω
+○ Parecidas com as notações big-O e big-Omega
+○ As notações big-O e big-Omega possuem uma relação de menor ou igual e maior ou igual
+○ As notações little-o e little-omega possuem uma relação de menor e maior
+○ Ou seja, essas notações não representam limites próximos da função
+○ Elas representam limites estritamente
+○ superiores: sempre maior
+○ inferiores: sempre menor
+
+CLASSE DE PROBLEMAS
+➔ A seguir, são apresentadas algumas classes de complexidade de problemas
+comumente usadas
+○ O(1): ordem constante
+■ As instruções são executadas um número fixo de vezes. Não depende do tamanho dos dados de entrada
+○ O(log n): ordem logarítmica
+■ Típica de algoritmos que resolvem um problema transformando-o
+em problemas menores
+○ O(n): ordem linear
+■ Em geral, uma certa quantidade de operações é realizada sobre cada um dos elementos de entrada
+
+O(1) < O(log n ) < O(n) < O(n log n ) < O(n²) < O(n³) < O(2n) < O(n!)
+
+○ O(n log n ): ordem log linear
+■ Típica de algoritmos que trabalham com particionamento dos dados. Esses algoritmos resolvem um problema transformando-o em problemas menores, que são resolvidos de forma independente e depois unidos
+○ O(n²): ordem quadrática
+■ Normalmente ocorre quando os dados são processados aos pares. Uma característica deste tipo de algoritmos é a presença de um aninhamento de dois comandos de repetição
+
+O(1) < O(log n ) < O(n) < O(n log n ) < O(n²) < O(n³) < O(2n) < O(n!)
+
+○ O(n³): ordem cúbica
+■ É caracterizado pela presença de três estruturas de repetição aninhadas
+○ O(2n): ordem exponencial
+■ Geralmente ocorre quando se usa uma solução de força bruta. Não são úteis do ponto de vista prático
+○ O(n!): ordem fatorial
+■ Geralmente ocorre quando se usa uma solução de força bruta. Não são úteis do ponto de vista prático. Possui um comportamento muito pior que o exponencial
+
+O(1) < O(log n ) < O(n) < O(n log n ) < O(n²) < O(n³) < O(2n) < O(n!)
+
+Cuidado
+○ Na análise assintótica as constantes de multiplicação são consideradas
+irrelevantes e descartadas
+■ Porém, elas podem ser relevantes na prática, principalmente se o tamanho da entrada é pequeno
+○ Exemplo: qual função tem menor custo?
+■ f(n) = 10100 * n
+■ g(n) = 10n log n
+○ Análise assintótica: o primeiro é mais eficiente
+■ f(n) = 10100 * n tem complexidade O(n)
+■ g(n) = 10n log n tem complexidade O(n log n)
+○ No entanto, 10100 é um número muito grande
+■ Neste caso, 10n log n > 10100 * n apenas para
+n > 2^10^99
+■ Para qualquer valor menor de n o algoritmo de complexidade O(n log n) será melhor
