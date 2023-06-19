@@ -1,0 +1,58 @@
+Tabela Hash:
+Uma tabela hash é uma estrutura de dados que permite armazenar e recuperar informações de forma eficiente. Ela utiliza uma função hash para mapear chaves (como strings, números, etc.) para índices em uma tabela. A tabela hash é composta por uma matriz (array) de "slots" ou "buckets", nos quais os elementos são armazenados. A função hash calcula o índice em que um elemento será armazenado na tabela, com base em sua chave. Dessa forma, quando precisamos recuperar um elemento, podemos calcular seu índice através da função hash e acessar diretamente o slot correspondente, reduzindo a necessidade de percorrer toda a estrutura.
+
+Hashing Universal:
+O hashing universal é uma técnica utilizada para evitar colisões em tabelas hash. Consiste em usar uma família de funções hash e selecionar aleatoriamente uma delas durante a criação da tabela. A ideia é que, com uma função hash aleatória selecionada para cada tabela, a probabilidade de colisão seja reduzida significativamente, distribuindo os elementos de forma mais uniforme.
+
+Colisão:
+Uma colisão ocorre em uma tabela hash quando dois ou mais elementos possuem a mesma chave ou quando a função hash gera o mesmo índice para diferentes chaves. Isso pode resultar em conflitos, onde vários elementos precisam ser armazenados no mesmo slot da tabela. As colisões são indesejáveis, pois podem diminuir a eficiência da estrutura e aumentar o tempo de busca e inserção dos elementos.
+
+Métodos de tratamento de colisão:
+Existem diversos métodos para tratar colisões em tabelas hash, sendo os principais:
+
+Encadeamento separado (Separate Chaining): Nesse método, cada slot da tabela contém uma lista ligada (ou outra estrutura de dados) que armazena os elementos que colidem. Quando ocorre uma colisão, o novo elemento é simplesmente adicionado à lista correspondente. A busca de um elemento envolve calcular o índice pela função hash, percorrer a lista correspondente e comparar as chaves até encontrar o elemento desejado.
+
+Endereçamento aberto (Open Addressing): Nesse método, quando ocorre uma colisão, o elemento colidente é inserido em um slot diferente, calculado a partir da função hash e de uma sequência de tentativas. Existem várias estratégias para encontrar o próximo slot disponível, como sondagem linear (tentar os slots consecutivos até encontrar um vazio), sondagem quadrática (aumentar o salto quadraticamente) e sondagem por hashing duplo (usar uma segunda função hash para calcular o salto). A busca de um elemento envolve calcular o índice pela função hash e percorrer os slots consecutivamente até encontrar o elemento ou um slot vazio.
+
+Características desejáveis de uma função hash:
+Ao definir uma função hash, duas características desejáveis são:
+Distribuição uniforme: Uma boa função hash deve distribuir as chaves de forma uniforme na tabela, evitando colisões desnecessárias. Isso ajuda a garantir um desempenho eficiente e reduzir o número de colisões.
+
+Baixa taxa de colisões: É desejável que a função hash tenha uma baixa taxa de colisões, ou seja
+
+
+
+
+Tabelas hash utilizam uma função de hashing para espalhar os elementos na tabela?
+
+Verdadeiro. Tabelas hash utilizam uma função de hashing para espalhar os elementos na tabela. A função de hashing mapeia as chaves dos elementos para índices na tabela, permitindo uma distribuição eficiente dos elementos e facilitando a recuperação dos mesmos.
+
+A busca em uma tabela hash possui um custo médio de O(1)?
+
+Verdadeiro. Em uma tabela hash bem implementada, a busca possui um custo médio de O(1) (complexidade constante). Isso ocorre porque, quando a função de hash é eficiente e distribui os elementos uniformemente na tabela, a busca é direta e requer apenas uma operação para calcular o índice correspondente à chave desejada. No entanto, é importante mencionar que esse é o caso médio e pode haver variações dependendo da qualidade da função de hash, do fator de carga da tabela e da ocorrência de colisões.
+
+Princípio de funcionamento dos métodos de busca é baseado na comparação de chaves?
+
+Verdadeiro. O princípio de funcionamento dos métodos de busca em uma tabela hash é baseado na comparação de chaves. Quando desejamos buscar um elemento na tabela, utilizamos a chave correspondente a esse elemento como referência. A função de hash é aplicada à chave para obter o índice onde o elemento deveria estar armazenado na tabela. Em seguida, comparamos a chave do elemento armazenado nesse índice com a chave de busca. Se forem iguais, encontramos o elemento desejado. Caso contrário, pode ser necessário lidar com colisões ou continuar a busca dependendo do método de tratamento de colisão utilizado. A comparação de chaves é essencial para localizar o elemento correto na tabela hash.
+
+O encadeamento separado trata colisões armazenando os elementos com chaves diferentes em listas ligadas?
+
+Verdadeiro. No método de encadeamento separado (Separate Chaining), as colisões são tratadas armazenando os elementos com chaves diferentes em listas ligadas. Cada slot da tabela hash contém uma estrutura de dados, geralmente uma lista ligada, onde os elementos são inseridos em caso de colisão. Quando ocorre uma colisão, o novo elemento é simplesmente adicionado à lista correspondente ao índice calculado pela função de hash. Isso permite que vários elementos com chaves diferentes coexistam no mesmo slot da tabela, facilitando a busca e a manipulação desses elementos quando necessário.
+
+
+Qual é a vantagem do hashing perfeito?     a) Baixo custo de comparação de chaves.      b) Alta eficiência na operação de busca      c) Não ocorrem colisões       d) Facilidade de implementação
+
+A vantagem do hashing perfeito é que não ocorrem colisões. Portanto, a resposta correta é a opção "c) Não ocorrem colisões". No hashing perfeito, cada chave é mapeada para um índice único na tabela hash, sem colidir com outras chaves. Isso elimina a necessidade de tratamento de colisões e garante um desempenho ideal na recuperação dos elementos, tornando a operação de busca extremamente eficiente.
+
+Qual é a principal aplicação da tabela hash?    a) Busca de elementos em base de dados.    b)  Compactação de dados      c) Ordenação de elementos.     d) Criptografia de informações
+
+A principal aplicação da tabela hash é a busca de elementos em uma base de dados. Portanto, a resposta correta é a opção "a) Busca de elementos em base de dados". As tabelas hash são amplamente utilizadas para armazenar e recuperar informações de forma eficiente, permitindo a localização rápida dos elementos com base em suas chaves. Embora as tabelas hash possam ser usadas em outros contextos, como compactação de dados, ordenação ou criptografia, sua aplicação mais comum é facilitar a busca e o acesso eficiente aos elementos em uma base de dados.
+
+Qual é a função da função de hashing em uma tabela hash?     a) Distribuir as informações de forma equilibrada pela tabela hash   b) Calcular o custo de comparação de chaves   c) Realizar a alocação de elementos na tabela hash.    d) Ordenar os elementos na tabela hash
+
+A função de hashing em uma tabela hash tem como função distribuir as informações de forma equilibrada pela tabela hash. Portanto, a resposta correta é a opção "a) Distribuir as informações de forma equilibrada pela tabela hash". A função de hashing recebe uma chave como entrada e retorna um índice na tabela onde o elemento correspondente será armazenado. Uma boa função de hashing visa espalhar as chaves de forma uniforme pela tabela, minimizando colisões e garantindo um acesso eficiente aos elementos. A função de hashing não está envolvida no cálculo do custo de comparação de chaves, alocação de elementos ou ordenação dos elementos na tabela hash.
+
+O que é uma operação de busca ideal? a) Acesso direto ao elemento procurado b) Compressão de dados c) Comparação eficiente de chaves d) Ordenação dos elementos
+
+
+Uma operação de busca ideal é aquela em que ocorre o acesso direto ao elemento procurado. Portanto, a resposta correta é a opção "a) Acesso direto ao elemento procurado". Em uma operação de busca ideal, não há necessidade de percorrer ou comparar outros elementos, pois o elemento desejado é encontrado diretamente na posição ou índice calculado pela função de hash. Essa é uma das principais vantagens das tabelas hash, permitindo um acesso rápido e eficiente aos elementos através da função de hash, sem a necessidade de realizar comparações extensivas ou ordenações.
